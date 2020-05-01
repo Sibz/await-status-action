@@ -1,0 +1,13 @@
+name: 'action-template'
+description: 'description'
+author: 'Sibz@EntityZero'
+branding:
+  icon: 'check'  
+  color: 'green'
+inputs:
+  name:
+    description: 'input'
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

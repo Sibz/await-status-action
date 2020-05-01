@@ -1,0 +1,26 @@
+{
+  "name": "action-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sibz/action-template.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sibz/action-template/issues"
+  },
+  "homepage": "https://github.com/Sibz/action-template#readme",
+  "devDependencies": {
+    "@types/node": "^13.13.4",
+    "@zeit/ncc": "^0.22.1",
+    "ava": "^3.8.1",
+    "ts-node": "^8.9.1",
+    "typescript": "^3.8.3"
+  }
+}
