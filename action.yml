@@ -15,6 +15,10 @@ inputs:
     description: 'max time to wait'
     required: false
     default: '600'
+  notPresentTimeout:
+    description: 'max time to wait for a check to become present'
+    required: false
+    default: '300'
   pollInterval:
     description: 'time to wait inbetween polling for states'
     required: false
@@ -40,7 +44,6 @@ outputs:
     description: "semi-colon separated list of failed checks"
   failedCheckStates:
     description: "semi-colon separated list of check results, on timeout will be state or 'not_present'"
-  
 runs:
   using: 'node12'
   main: 'dist/index.js'
