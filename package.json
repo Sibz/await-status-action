@@ -26,5 +26,13 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.4"
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   }
 }
