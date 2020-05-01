@@ -1,1 +1,1 @@
-# action-template
+# wait-for-github-status-action

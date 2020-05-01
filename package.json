@@ -1,26 +1,30 @@
 {
-  "name": "action-template",
+  "name": "wait-for-github-status-action",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava --verbose",
+    "pack": "ncc build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sibz/action-template.git"
+    "url": "git+https://github.com/Sibz/wait-for-github-status-action.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Sibz/action-template/issues"
+    "url": "https://github.com/Sibz/wait-for-github-status-action/issues"
   },
-  "homepage": "https://github.com/Sibz/action-template#readme",
+  "homepage": "https://github.com/Sibz/wait-for-github-status-action#readme",
   "devDependencies": {
     "@types/node": "^13.13.4",
     "@zeit/ncc": "^0.22.1",
     "ava": "^3.8.1",
     "ts-node": "^8.9.1",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.4"
   }
 }

@@ -1,9 +1,9 @@
-name: 'action-template'
+name: 'wait-for-github-status-action'
 description: 'description'
 author: 'Sibz@EntityZero'
 branding:
-  icon: 'check'  
-  color: 'green'
+  icon: 'clock'  
+  color: 'yellow'
 inputs:
   name:
     description: 'input'
