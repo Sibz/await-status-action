@@ -5,9 +5,42 @@ branding:
   icon: 'clock'  
   color: 'yellow'
 inputs:
-  name:
-    description: 'input'
+  authToken:
+    description: 'authToken'
+    required: true
+  contexts:
+    description: 'semi-colon separated list of contexts (check names)'
+    required: true
+  timeout:
+    description: 'max time to wait'
     required: false
+    default: '600'
+  pollInterval:
+    description: 'time to wait inbetween polling for states'
+    required: false
+    default: '10'
+  completeStates:
+    description: "semi-colen separated list of states to consider complete, default: 'success'"
+    required: false
+    default: 'success'
+  failureStates:
+    description: "semi-colen separated list of states to consider failure"
+    required: false
+    default: 'error;failure'
+  sha:
+    description: 'sha'
+    required: false
+    default: ${{ github.sha }}
+outputs:
+  result:
+    description: "'success', 'failure' or 'timeout'"
+  numberOfFailedChecks:
+    description: 'number of failing checks'
+  failedCheckNames:
+    description: "semi-colon separated list of failed checks"
+  failedCheckStates:
+    description: "semi-colon separated list of check results, on timeout will be state or 'not_present'"
+  
 runs:
   using: 'node12'
   main: 'dist/index.js'
