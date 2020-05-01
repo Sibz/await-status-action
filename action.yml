@@ -24,11 +24,11 @@ inputs:
     required: false
     default: '10'
   completeStates:
-    description: "semi-colen separated list of states to consider complete, default: 'success'"
+    description: "semi-colon separated list of states to consider complete, default: 'success'"
     required: false
     default: 'success'
   failureStates:
-    description: "semi-colen separated list of states to consider failure"
+    description: "semi-colon separated list of states to consider failure"
     required: false
     default: 'error;failure'
   sha:
