@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Sibz/wait-for-github-status-action#readme",
   "devDependencies": {
+    "@octokit/types": "^2.12.2",
     "@types/node": "^13.13.4",
     "@zeit/ncc": "^0.22.1",
     "ava": "^3.8.1",
@@ -25,7 +26,8 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@actions/core": "^1.2.4"
+    "@actions/core": "^1.2.4",
+    "@octokit/rest": "^17.6.0"
   },
   "ava": {
     "extensions": [
