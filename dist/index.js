@@ -6709,7 +6709,7 @@ class AwaitRunner {
                 }
                 this.currentStatuses = yield statusFunctions_1.getCurrentStatuses(inputs, this.octokit, this.currentStatuses);
             }
-            return timeout > Date.now() ? RunResult_1.RunResult.timeout : failed ? RunResult_1.RunResult.failure : RunResult_1.RunResult.success;
+            return timeout < Date.now() ? RunResult_1.RunResult.timeout : failed ? RunResult_1.RunResult.failure : RunResult_1.RunResult.success;
         });
     }
 }
