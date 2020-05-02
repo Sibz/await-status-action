@@ -20,6 +20,67 @@ jobs:
         notPresentTimeout: 60
     - name: result
       run: 'echo ${{ steps.stepId.outputs.result }} ${{ steps.stepId.outputs.failedCheckNames }}'
+  test2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: run
+      id: stepId
+      uses: ./
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        contexts: 'Test State that never exist'
+        timeout: 120
+        notPresentTimeout: 5
+    - name: result
+      run: |
+        'echo ${{ steps.stepId.outputs.result }}'
+        'echo ${{ steps.stepId.outputs.failedCheckNames }}'
+        'echo ${{ steps.stepId.outputs.failedCheckStates }}'
+  test3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: run
+      id: stepId
+      uses: ./
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        contexts: 'Test State that stays pending'
+        timeout: 120
+        notPresentTimeout: 20
+    - name: result
+      run: |
+        'echo ${{ steps.stepId.outputs.result }}'
+        'echo ${{ steps.stepId.outputs.failedCheckNames }}'
+        'echo ${{ steps.stepId.outputs.failedCheckStates }}'
+    - uses: Sibz/github-status-action@v1
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        state: 'success'
+        context: 'Test State that stays pending'
+  test4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: run
+      id: stepId
+      uses: ./
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        contexts: 'Test State that is initially an error'
+        timeout: 120
+        notPresentTimeout: 60
+    - name: result
+      run: |
+        'echo ${{ steps.stepId.outputs.result }}'
+        'echo ${{ steps.stepId.outputs.failedCheckNames }}'
+        'echo ${{ steps.stepId.outputs.failedCheckStates }}'
+    - uses: Sibz/github-status-action@v1
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        state: 'success'
+        context: 'Test State that is initially an error'
 
   setup_state:
     runs-on: ubuntu-latest
@@ -29,6 +90,24 @@ jobs:
         authToken: ${{secrets.GITHUB_TOKEN}}
         state: 'success'
         context: 'Test State'
+
+  setup_state3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: Sibz/github-status-action@v1
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        state: 'pending'
+        context: 'Test State that stays pending'
+        
+  setup_state4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: Sibz/github-status-action@v1
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        state: 'failure'
+        context: 'Test State that is initially a failure'
     
       
     
