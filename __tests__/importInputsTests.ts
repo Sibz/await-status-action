@@ -1,6 +1,7 @@
 import test from 'ava';
-import importInputs, { ActionsCore, ERR_INVALID_STRING, DEFAULTS, ERR_INVALID_NUMBER } from '../src/fn/importInputs';
+import importInputs, { ERR_INVALID_STRING, DEFAULTS, ERR_INVALID_NUMBER } from '../src/fn/importInputs';
 import inputNames from '../src/inputNames';
+import { ActionsCore } from '../src/ActionsCore';
 
 let testValueSet = {
     authToken: "token",
@@ -28,6 +29,7 @@ class actionCore implements ActionsCore {
         inputMapping.forEach(x => this.inputMapping.push(x));
         this.inputMapping = this.inputMapping.reverse();
     }
+    setOutput(name: string, value: string | number) { return };
     getInput(arg: string) {
         let result = this.inputMapping.find(x => x.name == arg);
         if (!result)

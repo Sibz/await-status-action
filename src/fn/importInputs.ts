@@ -1,6 +1,7 @@
 import * as actionsCore from "@actions/core"
 import { Inputs } from "../interfaces/Inputs";
 import inputNames from '../inputNames';
+import { ActionsCore } from "../ActionsCore";
 
 export const ERR_INVALID_STRING: string = "{0} is undefined, null or empty string";
 export const ERR_INVALID_NUMBER: string = "{0} is NaN";
@@ -77,8 +78,4 @@ function getNumber(core: ActionsCore, inputName: string, defaultValue: number): 
     }
 
     return n;
-}
-
-export interface ActionsCore {
-    getInput: (arg: string) => string;
 }
