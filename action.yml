@@ -14,23 +14,18 @@ inputs:
   timeout:
     description: 'max time to wait'
     required: false
-    default: '600'
   notPresentTimeout:
     description: 'max time to wait for a check to become present'
     required: false
-    default: '300'
   pollInterval:
     description: 'time to wait inbetween polling for states'
     required: false
-    default: '10'
   completeStates:
     description: "semi-colon separated list of states to consider complete, default: 'success'"
     required: false
-    default: 'success'
   failureStates:
-    description: "semi-colon separated list of states to consider failure"
+    description: "semi-colon separated list of states to consider failure, default 'error;failure'"
     required: false
-    default: 'error;failure'
   sha:
     description: 'sha'
     required: false
