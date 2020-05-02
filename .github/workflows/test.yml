@@ -5,9 +5,26 @@ on:
     branches:
       - master
 
-jobs:
+jobs:        
   test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: ./
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        contexts: 'Test State'
+        timeout: 120
+        notPresentTimeout: 60
+
+  setup_state:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: Sibz/github-status-action@v1
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        status: 'success'
+        context: 'Test State'
+    
+      
     
