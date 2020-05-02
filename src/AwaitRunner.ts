@@ -89,8 +89,3 @@ export class AwaitRunner {
         return timeout > Date.now() ? RunResult.timeout : failed ? RunResult.failure : RunResult.success;
     }
 }
-
-interface RunOutput {
-    failedCheckNames: string[],
-    failedCheckStates: string[]
-}
