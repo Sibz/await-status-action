@@ -86,6 +86,6 @@ export class AwaitRunner {
             }
             this.currentStatuses = await getCurrentStatuses(inputs, this.octokit, this.currentStatuses);
         }
-        return timeout > Date.now() ? RunResult.timeout : failed ? RunResult.failure : RunResult.success;
+        return timeout < Date.now() ? RunResult.timeout : failed ? RunResult.failure : RunResult.success;
     }
 }
