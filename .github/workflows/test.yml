@@ -11,6 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: run
+      id: stepId
       uses: ./
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
@@ -18,7 +19,7 @@ jobs:
         timeout: 120
         notPresentTimeout: 60
     - name: result
-      run: 'echo ${{ steps.run.outputs.result }}'
+      run: 'echo ${{ steps.stepId.outputs.result }} ${{ steps.stepId.outputs.failedCheckNames }}'
 
   setup_state:
     runs-on: ubuntu-latest
