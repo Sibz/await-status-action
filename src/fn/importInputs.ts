@@ -29,6 +29,11 @@ export default function importInputs(testActionsCore: any | null = null): Inputs
         repository: getString(core, inputNames.repository)
     } as Inputs;
 
+    if (inputs.repository.startsWith(`${inputs.owner}/`))
+    {
+        inputs.repository = inputs.repository.replace(`${inputs.owner}/`,'');
+    }
+
     return inputs;
 }
 
