@@ -4,7 +4,7 @@ import { Inputs } from "./interfaces/Inputs";
 import { Octokit } from "@octokit/rest";
 import importInputs from "./fn/importInputs";
 import { NOT_PRESENT, OUTPUT_NAMES } from "./constants";
-import { getCurrentStatuses, statusesHasFailure, statusesAllComplete, statusesAllPresent } from "./fn/statusFunctions";
+import { getCurrentStatuses, statusesHasFailure, statusesAllComplete, statusesAllPresent, newCurrentStatuses } from "./fn/statusFunctions";
 import delay from "delay";
 import { ActionsCore } from "./interfaces/ActionsCore";
 
@@ -33,31 +33,36 @@ export class AwaitRunner {
                 timeout: 0
             }
         });
-        this.currentStatuses = {};
-        this.inputs.contexts.forEach(x => this.currentStatuses[x] = NOT_PRESENT);
+        this.currentStatuses = newCurrentStatuses(this.inputs.contexts);
     }
 
     async run() {
 
         let runResult = await this.runLoop();
 
-        let failedCheckNames: string[] = [];
-        let failedCheckStates: string[] = [];
+        let runOutput: RunOutput = {
+            failedCheckNames: [],
+            failedCheckStates: []
+        }
 
         if (runResult != RunResult.success) {
-            this.inputs.contexts.forEach(element => {
-                let curStatus = this.currentStatuses[element]
-                if (this.inputs.failureStates.includes(curStatus) || curStatus == NOT_PRESENT) {
-                    failedCheckNames.push(element);
-                    failedCheckStates.push(curStatus);
-                }
-            });
+            this.getRunOutput(runOutput);
         }
 
         this.core.setOutput(OUTPUT_NAMES.result, runResult);
-        this.core.setOutput(OUTPUT_NAMES.numberOfFailedChecks, failedCheckNames.length);
-        this.core.setOutput(OUTPUT_NAMES.failedCheckStates, failedCheckStates.join(';'));
-        this.core.setOutput(OUTPUT_NAMES.failedCheckNames, failedCheckNames.join(';'));
+        this.core.setOutput(OUTPUT_NAMES.numberOfFailedChecks, runOutput.failedCheckNames.length);
+        this.core.setOutput(OUTPUT_NAMES.failedCheckStates, runOutput.failedCheckStates.join(';'));
+        this.core.setOutput(OUTPUT_NAMES.failedCheckNames, runOutput.failedCheckNames.join(';'));
+    }
+
+    private getRunOutput(output:RunOutput) {
+        this.inputs.contexts.forEach(element => {
+            let curStatus = this.currentStatuses[element]
+            if (this.inputs.failureStates.includes(curStatus) || curStatus == NOT_PRESENT) {
+                output.failedCheckNames.push(element);
+                output.failedCheckStates.push(curStatus);
+            }
+        });
     }
 
     async runLoop(): Promise<RunResult> {
@@ -83,4 +88,9 @@ export class AwaitRunner {
         }
         return timeout > Date.now() ? RunResult.timeout : failed ? RunResult.failure : RunResult.success;
     }
+}
+
+interface RunOutput {
+    failedCheckNames: string[],
+    failedCheckStates: string[]
 }

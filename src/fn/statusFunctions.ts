@@ -47,3 +47,9 @@ export async function getCurrentStatuses(inputs: Inputs, octokit: Octokit, curre
         ref: inputs.ref
     })).data);
 }
+
+export function newCurrentStatuses(contexts: string[]): CheckStatus {
+    let checkStatus: CheckStatus = {};
+    contexts.forEach(x => checkStatus[x] = NOT_PRESENT);
+    return checkStatus;
+}
