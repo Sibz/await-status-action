@@ -10,7 +10,9 @@ let testValueSet = {
     pollInterval: "42",
     completeStates: "success;pending",
     failureStates: "pending;error;failure",
-    sha: "testSHA"
+    sha: "testSHA",
+    owner: "repoOwner",
+    repository: "repositoryName"
 }
 
 class actionCore implements ActionsCore {
@@ -20,6 +22,8 @@ class actionCore implements ActionsCore {
             { name: inputNames.authToken, value: testValueSet.authToken },
             { name: inputNames.contexts, value: testValueSet.contexts },
             { name: inputNames.sha, value: testValueSet.sha },
+            { name: inputNames.owner, value: testValueSet.owner },
+            { name: inputNames.repository, value: testValueSet.repository },
         ]
         inputMapping.forEach(x => this.inputMapping.push(x));
         this.inputMapping = this.inputMapping.reverse();
@@ -65,6 +69,12 @@ interface InputMapping {
     });
     test("should import failureStates", t => {
         t.deepEqual(importInputs(new actionCore([{ name: inputNames.failureStates, value: testValueSet.failureStates }])).failureStates, testValueSet.failureStates.split(';'));
+    });
+    test("should import owner", t=> {
+        t.is(importInputs(new actionCore([{ name: inputNames.owner, value: testValueSet.owner}])).owner, testValueSet.owner);
+    });
+    test("should import repository", t=> {
+        t.is(importInputs(new actionCore([{ name: inputNames.repository, value: testValueSet.repository}])).repository, testValueSet.repository);
     });
 }
 
@@ -117,5 +127,13 @@ interface InputMapping {
     test("when pollInterval is NaN, should throw", t => {
         let err = t.throws(() => importInputs(new actionCore([{name: inputNames.pollInterval, value: 'bad'}])));
         t.is(err.message, ERR_INVALID_NUMBER.replace('{0}', inputNames.pollInterval));
+    });
+    test("when owner undef, null or empty string, should throw", t => {
+        let err = t.throws(() => importInputs(new actionCore([{name: inputNames.owner, value: ''}])));
+        t.is(err.message, ERR_INVALID_STRING.replace('{0}', inputNames.owner));
+    });
+    test("when repository undef, null or empty string, should throw", t => {
+        let err = t.throws(() => importInputs(new actionCore([{name: inputNames.repository, value: ''}])));
+        t.is(err.message, ERR_INVALID_STRING.replace('{0}', inputNames.repository));
     });
 }

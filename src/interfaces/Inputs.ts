@@ -7,4 +7,6 @@ export interface Inputs {
     completeStates: string[],
     failureStates: string[],
     sha: string
+    owner: string,
+    repository: string
 }

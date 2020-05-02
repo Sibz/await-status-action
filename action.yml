@@ -30,6 +30,14 @@ inputs:
     description: 'sha'
     required: false
     default: ${{ github.sha }}
+  owner:
+    description: 'GitHub username of repository owner'
+    required: false
+    default: ${{ github.repository_owner }}
+  repository: 
+    description: 'GitHub repository where sha exist'
+    required: false
+    default: ${{ github.repository }}
 outputs:
   result:
     description: "'success', 'failure' or 'timeout'"
