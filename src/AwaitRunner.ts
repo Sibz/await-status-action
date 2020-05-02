@@ -3,8 +3,7 @@ import { RunResult } from "./enums/RunResult";
 import { Inputs } from "./interfaces/Inputs";
 import { Octokit } from "@octokit/rest";
 import importInputs from "./fn/importInputs";
-import { NOT_PRESENT } from "./constants";
-import outputNames from "./outputNames";
+import { NOT_PRESENT, OUTPUT_NAMES } from "./constants";
 import { getCurrentStatuses, statusesHasFailure, statusesAllComplete, statusesAllPresent } from "./fn/statusFunctions";
 import delay from "delay";
 import { ActionsCore } from "./interfaces/ActionsCore";
@@ -55,10 +54,10 @@ export class AwaitRunner {
             });
         }
 
-        this.core.setOutput(outputNames.result, runResult);
-        this.core.setOutput(outputNames.numberOfFailedChecks, failedCheckNames.length);
-        this.core.setOutput(outputNames.failedCheckStates, failedCheckStates.join(';'));
-        this.core.setOutput(outputNames.failedCheckNames, failedCheckNames.join(';'));
+        this.core.setOutput(OUTPUT_NAMES.result, runResult);
+        this.core.setOutput(OUTPUT_NAMES.numberOfFailedChecks, failedCheckNames.length);
+        this.core.setOutput(OUTPUT_NAMES.failedCheckStates, failedCheckStates.join(';'));
+        this.core.setOutput(OUTPUT_NAMES.failedCheckNames, failedCheckNames.join(';'));
     }
 
     async runLoop(): Promise<RunResult> {

@@ -1,6 +1,6 @@
 import * as actionsCore from "@actions/core"
 import { Inputs } from "../interfaces/Inputs";
-import inputNames from '../inputNames';
+import { INPUT_NAMES } from '../constants';
 import { ActionsCore } from "../interfaces/ActionsCore";
 
 export const ERR_INVALID_STRING: string = "{0} is undefined, null or empty string";
@@ -18,16 +18,16 @@ export default function importInputs(testActionsCore: any | null = null): Inputs
     let core = testActionsCore as ActionsCore ?? actionsCore as ActionsCore;
 
     let inputs: Inputs = {
-        authToken: getString(core, inputNames.authToken),
-        contexts: getStringArray(core, inputNames.contexts),
-        timeout: getNumber(core, inputNames.timeout, DEFAULTS.timeout),
-        notPresentTimeout: getNumber(core, inputNames.notPresentTimeout, DEFAULTS.notPresentTimeout),
-        pollInterval: getNumber(core, inputNames.pollInterval, DEFAULTS.pollInterval),
-        completeStates: getStringArrayOrDefault(core, inputNames.completeStates, DEFAULTS.completeStates),
-        failureStates: getStringArrayOrDefault(core, inputNames.failureStates, DEFAULTS.failureStates),
-        ref: getString(core, inputNames.ref),
-        owner: getString(core, inputNames.owner),
-        repository: getString(core, inputNames.repository)
+        authToken: getString(core, INPUT_NAMES.authToken),
+        contexts: getStringArray(core, INPUT_NAMES.contexts),
+        timeout: getNumber(core, INPUT_NAMES.timeout, DEFAULTS.timeout),
+        notPresentTimeout: getNumber(core, INPUT_NAMES.notPresentTimeout, DEFAULTS.notPresentTimeout),
+        pollInterval: getNumber(core, INPUT_NAMES.pollInterval, DEFAULTS.pollInterval),
+        completeStates: getStringArrayOrDefault(core, INPUT_NAMES.completeStates, DEFAULTS.completeStates),
+        failureStates: getStringArrayOrDefault(core, INPUT_NAMES.failureStates, DEFAULTS.failureStates),
+        ref: getString(core, INPUT_NAMES.ref),
+        owner: getString(core, INPUT_NAMES.owner),
+        repository: getString(core, INPUT_NAMES.repository)
     } as Inputs;
 
     if (inputs.repository.startsWith(`${inputs.owner}/`))
