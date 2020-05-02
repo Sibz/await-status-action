@@ -69,7 +69,7 @@ jobs:
         context: 'Test State that stays pending'
     - name: fail
       uses: Sibz/action-always-fail@v1.0.1
-      if: steps.stepId.outputs.failedCheckStates != 'pending2'
+      if: steps.stepId.outputs.failedCheckStates != 'pending'
 
   test4:
     runs-on: ubuntu-latest
