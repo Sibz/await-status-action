@@ -68,7 +68,7 @@ jobs:
       uses: ./
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
-        contexts: 'Test State that is initially an failure'
+        contexts: 'Test State that is initially a failure'
         timeout: 30
         notPresentTimeout: 20
     - name: result
@@ -80,7 +80,7 @@ jobs:
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
         state: 'success'
-        context: 'Test State that is initially an failure'
+        context: 'Test State that is initially a failure'
 
   setup_state:
     runs-on: ubuntu-latest
