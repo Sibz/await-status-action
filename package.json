@@ -2,7 +2,7 @@
   "name": "wait-for-github-status-action",
   "version": "1.0.0",
   "description": "",
-  "main": "lib/index.js",
+  "main": "lib/main.js",
   "scripts": {
     "test": "ava --verbose",
     "pack": "ncc build"
