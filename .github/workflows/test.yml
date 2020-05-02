@@ -30,13 +30,13 @@ jobs:
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
         contexts: 'Test State that never exist'
-        timeout: 120
-        notPresentTimeout: 5
+        timeout: 30
+        notPresentTimeout: 20
     - name: result
       run: |
-        'echo ${{ steps.stepId.outputs.result }}'
-        'echo ${{ steps.stepId.outputs.failedCheckNames }}'
-        'echo ${{ steps.stepId.outputs.failedCheckStates }}'
+        echo ${{ steps.stepId.outputs.result }}
+        echo ${{ steps.stepId.outputs.failedCheckNames }}
+        echo ${{ steps.stepId.outputs.failedCheckStates }}
   test3:
     runs-on: ubuntu-latest
     steps:
@@ -47,13 +47,13 @@ jobs:
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
         contexts: 'Test State that stays pending'
-        timeout: 120
+        timeout: 25
         notPresentTimeout: 20
     - name: result
       run: |
-        'echo ${{ steps.stepId.outputs.result }}'
-        'echo ${{ steps.stepId.outputs.failedCheckNames }}'
-        'echo ${{ steps.stepId.outputs.failedCheckStates }}'
+        echo ${{ steps.stepId.outputs.result }}
+        echo ${{ steps.stepId.outputs.failedCheckNames }}
+        echo ${{ steps.stepId.outputs.failedCheckStates }}
     - uses: Sibz/github-status-action@v1
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
@@ -69,13 +69,13 @@ jobs:
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
         contexts: 'Test State that is initially an error'
-        timeout: 120
-        notPresentTimeout: 60
+        timeout: 30
+        notPresentTimeout: 20
     - name: result
       run: |
-        'echo ${{ steps.stepId.outputs.result }}'
-        'echo ${{ steps.stepId.outputs.failedCheckNames }}'
-        'echo ${{ steps.stepId.outputs.failedCheckStates }}'
+        echo ${{ steps.stepId.outputs.result }}
+        echo ${{ steps.stepId.outputs.failedCheckNames }}
+        echo ${{ steps.stepId.outputs.failedCheckStates }}
     - uses: Sibz/github-status-action@v1
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
@@ -99,7 +99,7 @@ jobs:
         authToken: ${{secrets.GITHUB_TOKEN}}
         state: 'pending'
         context: 'Test State that stays pending'
-        
+
   setup_state4:
     runs-on: ubuntu-latest
     steps:
