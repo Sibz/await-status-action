@@ -21,7 +21,7 @@ class actionCore implements ActionsCore {
         this.inputMapping = [
             { name: inputNames.authToken, value: testValueSet.authToken },
             { name: inputNames.contexts, value: testValueSet.contexts },
-            { name: inputNames.sha, value: testValueSet.sha },
+            { name: inputNames.ref, value: testValueSet.sha },
             { name: inputNames.owner, value: testValueSet.owner },
             { name: inputNames.repository, value: testValueSet.repository },
         ]
@@ -52,8 +52,8 @@ interface InputMapping {
     test("should import contexts", t => {
         t.deepEqual(importInputs(actionCoreDefault).contexts, testValueSet.contexts.split(';'));
     });
-    test("should import sha", t => {
-        t.is(importInputs(actionCoreDefault).sha, testValueSet.sha);
+    test("should import ref", t => {
+        t.is(importInputs(actionCoreDefault).ref, testValueSet.sha);
     });
     test("should import timeout", t => {
         t.is(importInputs(new actionCore([{ name: inputNames.timeout, value: testValueSet.timeout }])).timeout, parseInt(testValueSet.timeout));
@@ -112,9 +112,9 @@ interface InputMapping {
         let err = t.throws(() => importInputs(new actionCore([{name: inputNames.contexts, value: ''}])));
         t.is(err.message, ERR_INVALID_STRING.replace('{0}', inputNames.contexts));
     });
-    test("when sha undef, null or empty string, should throw", t => {
-        let err = t.throws(() => importInputs(new actionCore([{name: inputNames.sha, value: ''}])));
-        t.is(err.message, ERR_INVALID_STRING.replace('{0}', inputNames.sha));
+    test("when ref undef, null or empty string, should throw", t => {
+        let err = t.throws(() => importInputs(new actionCore([{name: inputNames.ref, value: ''}])));
+        t.is(err.message, ERR_INVALID_STRING.replace('{0}', inputNames.ref));
     });
     test("when timeout is NaN, should throw", t => {
         let err = t.throws(() => importInputs(new actionCore([{name: inputNames.timeout, value: 'bad'}])));

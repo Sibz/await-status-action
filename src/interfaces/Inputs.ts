@@ -6,7 +6,7 @@ export interface Inputs {
     pollInterval: number,
     completeStates: string[],
     failureStates: string[],
-    sha: string
+    ref: string
     owner: string,
     repository: string
 }

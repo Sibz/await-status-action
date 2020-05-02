@@ -6,7 +6,7 @@ export const inputNames = {
     pollInterval: "pollInterval",
     completeStates: "completeStates",
     failureStates: "failureStates",
-    sha: "sha",
+    ref: "ref",
     owner: "owner",
     repository: "repository"
 }

@@ -24,7 +24,7 @@ export default function importInputs(testActionsCore: any | null = null): Inputs
         pollInterval: getNumber(core, inputNames.pollInterval, DEFAULTS.pollInterval),
         completeStates: getStringArrayOrDefault(core, inputNames.completeStates, DEFAULTS.completeStates),
         failureStates: getStringArrayOrDefault(core, inputNames.failureStates, DEFAULTS.failureStates),
-        sha: getString(core, inputNames.sha),
+        ref: getString(core, inputNames.ref),
         owner: getString(core, inputNames.owner),
         repository: getString(core, inputNames.repository)
     } as Inputs;

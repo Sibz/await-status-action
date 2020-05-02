@@ -26,8 +26,8 @@ inputs:
   failureStates:
     description: "semi-colon separated list of states to consider failure, default 'error;failure'"
     required: false
-  sha:
-    description: 'sha'
+  ref:
+    description: 'ref'
     required: false
     default: ${{ github.sha }}
   owner:
