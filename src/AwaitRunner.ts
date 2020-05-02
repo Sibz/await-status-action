@@ -58,7 +58,7 @@ export class AwaitRunner {
     private getRunOutput(output:RunOutput) {
         this.inputs.contexts.forEach(element => {
             let curStatus = this.currentStatuses[element]
-            if (this.inputs.failureStates.includes(curStatus) || curStatus == NOT_PRESENT) {
+            if (!this.inputs.completeStates.includes(curStatus) || curStatus == NOT_PRESENT) {
                 output.failedCheckNames.push(element);
                 output.failedCheckStates.push(curStatus);
             }

@@ -6684,7 +6684,7 @@ class AwaitRunner {
     getRunOutput(output) {
         this.inputs.contexts.forEach(element => {
             let curStatus = this.currentStatuses[element];
-            if (this.inputs.failureStates.includes(curStatus) || curStatus == constants_1.NOT_PRESENT) {
+            if (!this.inputs.completeStates.includes(curStatus) || curStatus == constants_1.NOT_PRESENT) {
                 output.failedCheckNames.push(element);
                 output.failedCheckStates.push(curStatus);
             }

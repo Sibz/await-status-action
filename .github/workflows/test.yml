@@ -22,7 +22,7 @@ jobs:
       run: 'echo ${{ steps.stepId.outputs.result }} ${{ steps.stepId.outputs.failedCheckNames }}'
     - name: fail
       uses: cutenode/action-always-fail@v1.0.0
-      if: steps.stepId.outputs.result != "success"
+      if: steps.stepId.outputs.result != 'success'
       
   test2:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
         echo ${{ steps.stepId.outputs.failedCheckStates }}
     - name: fail
       uses: cutenode/action-always-fail@v1.0.0
-      if: steps.stepId.outputs.result != "not_present"
+      if: steps.stepId.outputs.result != 'not_present'
 
   test3:
     runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
         context: 'Test State that stays pending'
     - name: fail
       uses: cutenode/action-always-fail@v1.0.0
-      if: steps.stepId.outputs.result != "pending"
+      if: steps.stepId.outputs.result != 'pending'
 
   test4:
     runs-on: ubuntu-latest
@@ -95,7 +95,7 @@ jobs:
         context: 'Test State that is initially a failure'
     - name: fail
       uses: cutenode/action-always-fail@v1.0.0
-      if: steps.stepId.outputs.result != "failure"
+      if: steps.stepId.outputs.result != 'failure'
 
   setup_state:
     runs-on: ubuntu-latest
