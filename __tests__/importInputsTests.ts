@@ -1,7 +1,7 @@
 import test from 'ava';
 import importInputs, { ERR_INVALID_STRING, DEFAULTS, ERR_INVALID_NUMBER } from '../src/fn/importInputs';
 import inputNames from '../src/inputNames';
-import { ActionsCore } from '../src/ActionsCore';
+import { ActionsCore } from '../src/interfaces/ActionsCore';
 
 let testValueSet = {
     authToken: "token",

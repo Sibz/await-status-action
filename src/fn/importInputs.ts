@@ -1,7 +1,7 @@
 import * as actionsCore from "@actions/core"
 import { Inputs } from "../interfaces/Inputs";
 import inputNames from '../inputNames';
-import { ActionsCore } from "../ActionsCore";
+import { ActionsCore } from "../interfaces/ActionsCore";
 
 export const ERR_INVALID_STRING: string = "{0} is undefined, null or empty string";
 export const ERR_INVALID_NUMBER: string = "{0} is NaN";

@@ -7,7 +7,7 @@ import { NOT_PRESENT } from "./constants";
 import outputNames from "./outputNames";
 import { getCurrentStatuses, statusesHasFailure, statusesAllComplete, statusesAllPresent } from "./fn/statusFunctions";
 import delay from "delay";
-import { ActionsCore } from "./ActionsCore";
+import { ActionsCore } from "./interfaces/ActionsCore";
 
 export class AwaitRunner {
     private inputs: Inputs;
