@@ -10,12 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: ./
+    - name: run
+      uses: ./
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
         contexts: 'Test State'
         timeout: 120
         notPresentTimeout: 60
+    - name: result
+      run: 'echo ${{ steps.run.outputs.result }}'
 
   setup_state:
     runs-on: ubuntu-latest
