@@ -9,6 +9,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    - uses: Sibz/github-status-action@v1
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        state: 'success'
+        context: 'Test State'
     - uses: actions/checkout@v2
     - name: run
       id: stepId
@@ -16,8 +21,8 @@ jobs:
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
         contexts: 'Test State'
-        timeout: 120
-        notPresentTimeout: 60
+        timeout: 6
+        notPresentTimeout: 5
     - name: result
       run: 'echo ${{ steps.stepId.outputs.result }} ${{ steps.stepId.outputs.failedCheckNames }}'
     - name: fail
@@ -34,8 +39,8 @@ jobs:
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
         contexts: 'Test State that never exist'
-        timeout: 30
-        notPresentTimeout: 20
+        timeout: 300
+        notPresentTimeout: 5
     - name: result
       run: |
         echo ${{ steps.stepId.outputs.result }}
@@ -48,6 +53,11 @@ jobs:
   test3:
     runs-on: ubuntu-latest
     steps:
+    - uses: Sibz/github-status-action@v1
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        state: 'pending'
+        context: 'Test State that stays pending'
     - uses: actions/checkout@v2
     - name: run
       id: stepId
@@ -55,8 +65,8 @@ jobs:
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
         contexts: 'Test State that stays pending'
-        timeout: 25
-        notPresentTimeout: 20
+        timeout: 6
+        notPresentTimeout: 5
     - name: result
       run: |
         echo ${{ steps.stepId.outputs.result }}
@@ -74,6 +84,11 @@ jobs:
   test4:
     runs-on: ubuntu-latest
     steps:
+    - uses: Sibz/github-status-action@v1
+      with:
+        authToken: ${{secrets.GITHUB_TOKEN}}
+        state: 'failure'
+        context: 'Test State that is initially a failure'
     - uses: actions/checkout@v2
     - name: run
       id: stepId
@@ -81,8 +96,8 @@ jobs:
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
         contexts: 'Test State that is initially a failure'
-        timeout: 30
-        notPresentTimeout: 20
+        timeout: 10
+        notPresentTimeout: 5
     - name: result
       run: |
         echo ${{ steps.stepId.outputs.result }}
@@ -96,33 +111,3 @@ jobs:
     - name: fail
       uses: Sibz/action-always-fail@v1.0.1
       if: steps.stepId.outputs.result != 'failure'
-
-  setup_state:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: Sibz/github-status-action@v1
-      with:
-        authToken: ${{secrets.GITHUB_TOKEN}}
-        state: 'success'
-        context: 'Test State'
-
-  setup_state3:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: Sibz/github-status-action@v1
-      with:
-        authToken: ${{secrets.GITHUB_TOKEN}}
-        state: 'pending'
-        context: 'Test State that stays pending'
-
-  setup_state4:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: Sibz/github-status-action@v1
-      with:
-        authToken: ${{secrets.GITHUB_TOKEN}}
-        state: 'failure'
-        context: 'Test State that is initially a failure'
-    
-      
-    
