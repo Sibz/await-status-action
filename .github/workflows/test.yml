@@ -27,7 +27,7 @@ jobs:
     - uses: Sibz/github-status-action@v1
       with:
         authToken: ${{secrets.GITHUB_TOKEN}}
-        status: 'success'
+        state: 'success'
         context: 'Test State'
     
       
