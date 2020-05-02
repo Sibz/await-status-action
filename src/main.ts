@@ -4,6 +4,7 @@ import { Inputs } from "./interfaces/Inputs";
 import { Octokit } from "@octokit/rest";
 import { GetResponseDataTypeFromEndpointMethod } from "@octokit/types";
 import outputNames from "./outputNames";
+import delay from "delay";
 
 const NOT_PRESENT = "not_present";
 let tmpO = new Octokit();
@@ -59,7 +60,7 @@ async function run() {
         && !(completed = statusesAllComplete(inputs.completeStates, currentStatuses))        
         )
         {
-            // TODO : delay
+            await delay(inputs.pollInterval * 1000);
             if (!allPresent && statusesAllPresent(currentStatuses))
             {
                 allPresent = true;
