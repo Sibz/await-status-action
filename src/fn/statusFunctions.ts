@@ -1,5 +1,5 @@
-import {ListStatusesForRefResponse } from '../types';
-import { NOT_PRESENT} from '../constants';
+import { ListStatusesForRefResponse } from '../types';
+import { NOT_PRESENT } from '../constants';
 import { Inputs } from '../interfaces/Inputs';
 import { Octokit } from '@octokit/rest';
 
@@ -21,7 +21,7 @@ export function statusesAllComplete(completeStates: string[], currentStatuses: C
 
 export function statusesAllPresent(currentStatuses: CheckStatus) {
     let props = Object.getOwnPropertyNames(currentStatuses);
-    if (props.find(propName => currentStatuses[propName]==NOT_PRESENT)) {
+    if (props.find(propName => currentStatuses[propName] == NOT_PRESENT)) {
         return false;
     }
     return true;
@@ -40,12 +40,12 @@ export function updateCurrentStatuses(currentStatuses: CheckStatus, data: ListSt
 }
 
 export async function getCurrentStatuses(inputs: Inputs, octokit: Octokit, currentStatuses: CheckStatus) {
-    return updateCurrentStatuses(currentStatuses, 
+    return updateCurrentStatuses(currentStatuses,
         (await octokit.repos.listStatusesForRef({
-        owner: inputs.owner,
-        repo: inputs.repository,
-        ref: inputs.ref
-    })).data);
+            owner: inputs.owner,
+            repo: inputs.repository,
+            ref: inputs.ref
+        })).data);
 }
 
 export function newCurrentStatuses(contexts: string[]): CheckStatus {
