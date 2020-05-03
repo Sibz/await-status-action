@@ -1,5 +1,5 @@
 {
-  "name": "wait-for-github-status-action",
+  "name": "await-status-action",
   "version": "1.0.0",
   "description": "",
   "main": "lib/main.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sibz/wait-for-github-status-action.git"
+    "url": "git+https://github.com/Sibz/await-status-action.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Sibz/wait-for-github-status-action/issues"
+    "url": "https://github.com/Sibz/await-status-action/issues"
   },
-  "homepage": "https://github.com/Sibz/wait-for-github-status-action#readme",
+  "homepage": "https://github.com/Sibz/await-status-action#readme",
   "devDependencies": {
     "@octokit/types": "^2.12.2",
     "@types/node": "^13.13.4",

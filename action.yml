@@ -1,4 +1,4 @@
-name: 'wait-for-github-status-action'
+name: 'await-status-action'
 description: 'description'
 author: 'Sibz@EntityZero'
 branding:
