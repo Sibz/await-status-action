@@ -1,1 +1,1 @@
-# wait-for-github-status-action
+# Await Status Action
