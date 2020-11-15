@@ -42,9 +42,9 @@ If you need to return `pending` state as either complete or failed, you can add 
 * `completeStates`  
 **Default `'success'`**  
 Semi-colon separated list of states to consider completed successfully
-* `failedStates`  
+* `failureStates`  
 **Default: `'failure;error'`**  
-Semi-colon separated list of states to consider failed successfully
+Semi-colon separated list of states to consider failure
 
 ### Outputs
 * `result`  
