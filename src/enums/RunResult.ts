@@ -1,4 +1,4 @@
-export enum RunResult{ 
+export enum RunResult {
     success = "success",
     failure = "failure",
     timeout = "timeout"
