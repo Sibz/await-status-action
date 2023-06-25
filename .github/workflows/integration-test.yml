@@ -1,11 +1,16 @@
-name: 'test'
+name: 'integration-test'
 on: 
+  push:
+    branches:
+      - main
+      - master
   pull_request:
     branches:
       - master
+      - main
       - releases/*
 
-jobs:        
+jobs:
   test:
     runs-on: ubuntu-latest
     steps:
@@ -14,7 +19,7 @@ jobs:
         authToken: ${{secrets.GITHUB_TOKEN}}
         state: 'success'
         context: 'Test State'
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: run
       id: stepId
       uses: ./
@@ -32,7 +37,7 @@ jobs:
   test2:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: run
       id: stepId
       uses: ./
@@ -58,7 +63,7 @@ jobs:
         authToken: ${{secrets.GITHUB_TOKEN}}
         state: 'pending'
         context: 'Test State that stays pending'
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: run
       id: stepId
       uses: ./
@@ -89,7 +94,7 @@ jobs:
         authToken: ${{secrets.GITHUB_TOKEN}}
         state: 'failure'
         context: 'Test State that is initially a failure'
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: run
       id: stepId
       uses: ./

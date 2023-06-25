@@ -1,3 +1,3 @@
-interface CheckStatus {
+export interface CheckStatus {
     [checkName: string]: string
 }

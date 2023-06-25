@@ -48,5 +48,5 @@ outputs:
   failedCheckStates:
     description: "semi-colon separated list of check results, on timeout will be state or 'not_present'"
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'

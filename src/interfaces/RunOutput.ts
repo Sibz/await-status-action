@@ -1,4 +1,4 @@
-interface RunOutput {
+export interface RunOutput {
     failedCheckNames: string[],
     failedCheckStates: string[]
 }
